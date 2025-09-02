@@ -1,5 +1,7 @@
 module Types where
-    
+ 
+import Data.Time.Calendar (Day)
+
 -- Distâncias e comprimentos
 type Distancia = Double -- metros(m)
 type Comprimento = Double -- metros(m)
@@ -28,7 +30,7 @@ type Pressao = Double -- Pascal (Pa) ou (MPa)
 type Massa = Double -- quilogramas (kg)
 type Densidade = Double -- kg/m³
 type Peso = Double -- Newtons(N)
- 
+
 -- Velocidades e acelerações
 type Velocidade = Double -- metros por segundo(m/s)
 type Aceleracao = Double -- metros por segundo² (m/s²)
