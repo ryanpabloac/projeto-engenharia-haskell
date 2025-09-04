@@ -1,6 +1,6 @@
 module Engineering.Civil where
 
-import Types (Largura, Altura, MomentoInercia)
+import Types
 
 momentoInerciaRetangular :: Largura -> Altura -> MomentoInercia
 momentoInerciaRetangular largura_base altura_seccao =

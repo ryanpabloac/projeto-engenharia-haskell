@@ -7,7 +7,8 @@
 [x] distanciaEntrePontos -> Ryan Costa
 [x] distancia3D -> Ryan Costa
 [x] pontoMedio -> Matheus Vieira
-[/] calcularArea -> Matheus Vieira // Falta para poligonos quaisquer
+[x] calcularArea -> Matheus Vieira / Ryan Costa
+[x] calcularPerimetro
 
 ## Engenharia Civil
 [x] momentoInerciaRetangular -> Matheus Vieira
