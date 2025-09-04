@@ -1,4 +1,6 @@
-module 
+module Engineering.Mechanical where
+
+import Types
 
 calcularTorque :: Forca-> Distancia-> Angulo-> Torque
 calcularTorque força distancia_eixo angulo_força_raio = 
