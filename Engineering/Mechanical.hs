@@ -22,3 +22,4 @@ energiaCinetica massa velocidade = 0.5 * massa * velocidade ** 2
 energiaPotencial :: Massa-> Altura-> Energia
 energiaPotencial massa altura = massa * 9.81 * altura 
 
+centroMassaX :: [(Massa, Distancia)]-> Distancia
