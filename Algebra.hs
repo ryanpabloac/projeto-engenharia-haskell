@@ -1,0 +1,2 @@
+-- 4 funções iniciais => Cadu 
+-- 4 finais => Diogo
