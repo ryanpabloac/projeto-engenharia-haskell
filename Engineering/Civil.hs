@@ -21,5 +21,6 @@ cargaCriticaEuler :: ModuloElasticidade-> MomentoInercia-> Comprimento-> Forca
 cargaCriticaEuler _ _ 0 = error "Erro: Comprimento não pode ser zero, acarretando em divisão por zero, gerando indeterminação"
 cargaCriticaEuler elasticidade inercia comprimento = 
         ( pi ** 2 * elasticidade * inercia ) / ( comprimento ** 2 )
-
+        
+volumeConcreto :: Figura-> Volume
 
