@@ -23,3 +23,10 @@ energiaPotencial :: Massa-> Altura-> Energia
 energiaPotencial massa altura = massa * 9.81 * altura 
 
 centroMassaX :: [(Massa, Distancia)]-> Distancia
+centroMassaX [] = error "Erro: Não há como calcular o centro de Massa de uma lista sem elementos"
+centroMassaX lista = soma_massa_posição lista / soma_massas lista
+    where soma_massa_posição [ ] = 0
+          soma_massa_posição ((a,b) : xs ) = a * b + soma_massa_posição xs
+          
+          soma_massas [ ] = 0
+          soma_massas ((a,_) : xs ) = a + soma_massas xs 
