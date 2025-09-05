@@ -15,7 +15,7 @@
 [x] momentoInerciaRetangular -> Matheus Vieira
 [x] tensaoNormal -> Matheus Vieira
 
-##Algoritmos e Estruturas de Dados
-[x] quickSort
-[x] mergeSort
-[x] insertionSort
+## Algoritmos e Estruturas de Dados
+[x] quickSort -> Caio Fernandes
+[x] mergeSort -> Caio Fernandes
+
