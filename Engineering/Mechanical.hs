@@ -17,7 +17,7 @@ aceleracaocentripeta velocidade_tangecial raio =
         (velocidade_tangecial ** 2) / raio
         
 energiaCinetica :: Massa-> Velocidade-> Energia
-energiaCinetica massa velocidade = 0.5 * massa * velocidade ** 2
+energiaCinetica massa velocidade = 0.5 * massa * ( velocidade ** 2 )
 
 energiaPotencial :: Massa-> Altura-> Energia
 energiaPotencial massa altura = massa * 9.81 * altura 
