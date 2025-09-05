@@ -22,5 +22,5 @@ cargaCriticaEuler _ _ 0 = error "Erro: Comprimento não pode ser zero, acarretan
 cargaCriticaEuler elasticidade inercia comprimento = 
         ( pi ** 2 * elasticidade * inercia ) / ( comprimento ** 2 )
         
-volumeConcreto :: Figura-> Volume
+volumeConcreto :: Figura-> Volume -- Passar as mesmas funções de cálculo de volume
 
