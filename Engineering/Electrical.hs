@@ -1,3 +1,7 @@
+module Engineering.Electrical where
+
+import Types
+
 tensaoOhm :: Corrente-> Resistencia-> Tensao
 tensaoOhm corrente resistencia = 
         corrente * resistencia
