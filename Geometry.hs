@@ -1,6 +1,6 @@
 module Geometry where
 
-import Types (Ponto2D(..), Ponto3D(..), Figura(..), Area, Distancia, Perimetro)
+import Types (Ponto2D(..), Ponto3D(..), Figura(..), Area, Distancia, Perimetro, Volume)
 
 
 pontoMedio :: Ponto2D -> Ponto2D -> Ponto2D
@@ -42,11 +42,25 @@ calcularPerimetro (Triangulo p0 p1 p2) = l1 + l2 + l3
     l1 = distanciaEntrePontos p0 p1
     l2 = distanciaEntrePontos p0 p2
     l3 = distanciaEntrePontos p1 p2
-calcularPerimetro (Esfera _) = error "Não existe perímetro de figuras 3D"
-calcularPerimetro (Cilindro _ _) = error "Não existe perímetro de figuras 3D"
-calcularPerimetro (Paralelepipedo _ _ _) = error "Não existe perímetro de figuras 3D"
+calcularPerimetro (Esfera _) = error "Não existe perímetro de figuras espaciais"
+calcularPerimetro (Cilindro _ _) = error "Não existe perímetro de figuras espaciais"
+calcularPerimetro (Paralelepipedo _ _ _) = error "Não existe perímetro de figuras espacias"
 calcularPerimetro (Poligono xs) = sum [distanciaEntrePontos p0 p1 | (p0,p1) <- pareamento]
    where
     pareamento = zip xs (tail xs ++ [head xs])
+    
+    
+-- Funções de volume de figuras
+calcularVolume :: Figura -> Volume
 
+calcularVolume (Retangulo _ _) = error "Não existe volume de figuras planas"
+calcularVolume (Circulo _) = error "Não existe volume de figuras planas"
+calcularVolume (Triangulo _ _ _) = error "Não existe volume de figuras planas"
+calcularVolume (Poligono _) = error "Não existe volume de figuras planas"
+calcularVolume (Esfera r) = (4/3) * pi * (r**3)
+calcularVolume (Cilindro r a) = pi * (r**2) * a
+calcularVolume (Paralelepipedo c l a) = c * l * a
+
+dentroDoPoligono :: Ponto2D -> [Ponto2D] -> Bool
+dentroDoPoligono
 

@@ -8,7 +8,7 @@ import Data.List (sort, nub)
 -- TESTES PARA QUICKSORT
 -- =================================
 
--- Casos b´asicos
+-- Casos básicos
 testeQuickSortVazio :: Bool
 testeQuickSortVazio = quickSort ([] :: [Int]) == []
 
@@ -290,7 +290,7 @@ testeInsertionSortCasoMedio =
     insertionSort [4, 2, 7, 1, 9, 3, 6, 5, 8] == [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 -- =================================
--- TESTES DE CONSIST^ENCIA ENTRE ALGORITMOS
+-- TESTES DE Consistência ENTRE ALGORITMOS
 -- =================================
 
 testeConsistencia1 :: Bool
@@ -443,20 +443,20 @@ testePropriedadeListaVazia =
         insertionSort vazia == vazia
 
 -- =================================
--- FUNC¸~AO DE EXECUC¸~AO DOS TESTES
+-- FUNÇÃO DE EXECUÇÃO DOS TESTES
 -- =================================
 
 executarTestesOrdenacao :: IO ()
 executarTestesOrdenacao = do
     putStrLn "======================================"
-    putStrLn " TESTES ALGORITMOS DE ORDENAC¸~AO"
+    putStrLn " TESTES ALGORITMOS DE ORDENAÇÃO"
     putStrLn "======================================"
 
     putStrLn "\n-- TESTES QUICKSORT --"
     putStrLn $ "Vazio: " ++ show testeQuickSortVazio
     putStrLn $ "Um elemento: " ++ show testeQuickSortUmElemento
     putStrLn $ "Dois elementos: " ++ show testeQuickSortDoisElementos
-    putStrLn $ "Tr^es elementos: " ++ show testeQuickSortTresElementos
+    putStrLn $ "Três elementos: " ++ show testeQuickSortTresElementos
     putStrLn $ "Ordenado: " ++ show testeQuickSortOrdenado
     putStrLn $ "Ordenado grande: " ++ show testeQuickSortOrdenadoGrande
     putStrLn $ "Inverso: " ++ show testeQuickSortInverso
@@ -471,17 +471,17 @@ executarTestesOrdenacao = do
     putStrLn $ "Decimais: " ++ show testeQuickSortDecimais
     putStrLn $ "Grande: " ++ show testeQuickSortGrande
     putStrLn $ "Valores extremos: " ++ show testeQuickSortValoresExtremos
-    putStrLn $ "Padr~ao: " ++ show testeQuickSortPadrao
+    putStrLn $ "Padrão: " ++ show testeQuickSortPadrao
     putStrLn $ "Fibonacci: " ++ show testeQuickSortFibonacci
 
     putStrLn "\n-- TESTES MERGESORT --"
     putStrLn $ "Vazio: " ++ show testeMergeSortVazio
     putStrLn $ "Um elemento: " ++ show testeMergeSortUmElemento
     putStrLn $ "Dois elementos: " ++ show testeMergeSortDoisElementos
-    putStrLn $ "Tr^es elementos: " ++ show testeMergeSortTresElementos
+    putStrLn $ "Três elementos: " ++ show testeMergeSortTresElementos
     putStrLn $ "Ordenado: " ++ show testeMergeSortOrdenado
     putStrLn $ "Ordenado par: " ++ show testeMergeSortOrdenadoPar
-    putStrLn $ "Ordenado ´ımpar: " ++ show testeMergeSortOrdenadoImpar
+    putStrLn $ "Ordenado ímpar: " ++ show testeMergeSortOrdenadoImpar
     putStrLn $ "Inverso: " ++ show testeMergeSortInverso
     putStrLn $ "Inverso par: " ++ show testeMergeSortInversoPar
     putStrLn $ "Duplicados: " ++ show testeMergeSortDuplicados
@@ -503,11 +503,11 @@ executarTestesOrdenacao = do
     putStrLn $ "Um elemento: " ++ show testeInsertionSortUmElemento
     putStrLn $ "Dois elementos: " ++ show testeInsertionSortDoisElementos
     putStrLn $ "Dois ordenados: " ++ show testeInsertionSortDoisElementosOrdenados
-    putStrLn $ "Tr^es elementos: " ++ show testeInsertionSortTresElementos
+    putStrLn $ "Três elementos: " ++ show testeInsertionSortTresElementos
     putStrLn $ "Quatro elementos: " ++ show testeInsertionSortQuatroElementos
     putStrLn $ "Cinco elementos: " ++ show testeInsertionSortCincoElementos
     putStrLn $ "Ordenado: " ++ show testeInsertionSortOrdenado
-    putStrLn $ "Ordenado m´edio: " ++ show testeInsertionSortOrdenadoMedio
+    putStrLn $ "Ordenado médio: " ++ show testeInsertionSortOrdenadoMedio
     putStrLn $ "Inverso: " ++ show testeInsertionSortInverso
     putStrLn $ "Inverso grande: " ++ show testeInsertionSortInversoGrande
     putStrLn $ "Duplicados: " ++ show testeInsertionSortDuplicados
@@ -521,26 +521,26 @@ executarTestesOrdenacao = do
     putStrLn $ "Decimais: " ++ show testeInsertionSortDecimais
     putStrLn $ "Melhor caso: " ++ show testeInsertionSortMelhorCaso
     putStrLn $ "Pior caso: " ++ show testeInsertionSortPiorCaso
-    putStrLn $ "Caso m´edio: " ++ show testeInsertionSortCasoMedio
+    putStrLn $ "Caso médio: " ++ show testeInsertionSortCasoMedio
 
-    putStrLn "\n-- TESTES DE CONSIST^ENCIA --"
-    putStrLn $ "Consist^encia 1: " ++ show testeConsistencia1
-    putStrLn $ "Consist^encia 2: " ++ show testeConsistencia2
-    putStrLn $ "Consist^encia vazio: " ++ show testeConsistenciaVazio
-    putStrLn $ "Consist^encia um elemento: " ++ show testeConsistenciaUmElemento
-    putStrLn $ "Consist^encia duplicados: " ++ show testeConsistenciaDuplicados
-    putStrLn $ "Consist^encia negativos: " ++ show testeConsistenciaNegativos
-    putStrLn $ "Consist^encia strings: " ++ show testeConsistenciaStrings
-    putStrLn $ "Consist^encia decimais: " ++ show testeConsistenciaDecimais
-    putStrLn $ "Consist^encia grande: " ++ show testeConsistenciaGrande
-    putStrLn $ "Consist^encia caracteres: " ++ show testeConsistenciaCaracteres
-    putStrLn $ "Consist^encia extremos: " ++ show testeConsistenciaValoresExtremos
+    putStrLn "\n-- TESTES DE CONSISTÊNCIA --"
+    putStrLn $ "Consistência 1: " ++ show testeConsistencia1
+    putStrLn $ "Consistência 2: " ++ show testeConsistencia2
+    putStrLn $ "Consistência vazio: " ++ show testeConsistenciaVazio
+    putStrLn $ "Consistência um elemento: " ++ show testeConsistenciaUmElemento
+    putStrLn $ "Consistência duplicados: " ++ show testeConsistenciaDuplicados
+    putStrLn $ "Consistência negativos: " ++ show testeConsistenciaNegativos
+    putStrLn $ "Consistência strings: " ++ show testeConsistenciaStrings
+    putStrLn $ "Consistência decimais: " ++ show testeConsistenciaDecimais
+    putStrLn $ "Consistência grande: " ++ show testeConsistenciaGrande
+    putStrLn $ "Consistência caracteres: " ++ show testeConsistenciaCaracteres
+    putStrLn $ "Consistência extremos: " ++ show testeConsistenciaValoresExtremos
 
     putStrLn "\n-- TESTES DE PROPRIEDADES --"
     putStrLn $ "Propriedade comprimento: " ++ show testePropriedadeComprimento
     putStrLn $ "Propriedade elementos: " ++ show testePropriedadeElementos
     putStrLn $ "Propriedade ordem: " ++ show testePropriedadeOrdem
-    putStrLn $ "Propriedade idempot^encia: " ++ show testePropriedadeIdempotencia
+    putStrLn $ "Propriedade idempotência: " ++ show testePropriedadeIdempotencia
     putStrLn $ "Propriedade lista vazia: " ++ show testePropriedadeListaVazia
 
 testesAlgoritmosOrdenacao :: [(String, Bool)]
@@ -616,23 +616,23 @@ testesAlgoritmosOrdenacao =
     , ("InsertionSort Pior Caso", testeInsertionSortPiorCaso)
     , ("InsertionSort Caso M´edio", testeInsertionSortCasoMedio)
 
-    -- Testes de Consist^encia (11 testes)
-    , ("Consist^encia 1", testeConsistencia1)
-    , ("Consist^encia 2", testeConsistencia2)
-    , ("Consist^encia Vazio", testeConsistenciaVazio)
-    , ("Consist^encia Um Elemento", testeConsistenciaUmElemento)
-    , ("Consist^encia Duplicados", testeConsistenciaDuplicados)
-    , ("Consist^encia Negativos", testeConsistenciaNegativos)
-    , ("Consist^encia Strings", testeConsistenciaStrings)
-    , ("Consist^encia Decimais", testeConsistenciaDecimais)
-    , ("Consist^encia Grande", testeConsistenciaGrande)
-    , ("Consist^encia Caracteres", testeConsistenciaCaracteres)
-    , ("Consist^encia Extremos", testeConsistenciaValoresExtremos)
+    -- Testes de Consistência (11 testes)
+    , ("Consistência 1", testeConsistencia1)
+    , ("Consistência 2", testeConsistencia2)
+    , ("Consistência Vazio", testeConsistenciaVazio)
+    , ("Consistência Um Elemento", testeConsistenciaUmElemento)
+    , ("Consistência Duplicados", testeConsistenciaDuplicados)
+    , ("Consistência Negativos", testeConsistenciaNegativos)
+    , ("Consistência Strings", testeConsistenciaStrings)
+    , ("Consistência Decimais", testeConsistenciaDecimais)
+    , ("Consistência Grande", testeConsistenciaGrande)
+    , ("Consistência Caracteres", testeConsistenciaCaracteres)
+    , ("Consistência Extremos", testeConsistenciaValoresExtremos)
 
     -- Testes de Propriedades (5 testes)
     , ("Propriedade Comprimento", testePropriedadeComprimento)
     , ("Propriedade Elementos", testePropriedadeElementos)
     , ("Propriedade Ordem", testePropriedadeOrdem)
-    , ("Propriedade Idempot^encia", testePropriedadeIdempotencia)
+    , ("Propriedade idempotência", testePropriedadeIdempotencia)
     , ("Propriedade Lista Vazia", testePropriedadeListaVazia)
     ]

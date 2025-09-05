@@ -8,7 +8,8 @@
 [x] distancia3D -> Ryan Costa
 [x] pontoMedio -> Matheus Vieira
 [x] calcularArea -> Matheus Vieira / Ryan Costa
-[x] calcularPerimetro
+[x] calcularPerimetro -> Ryan Costa
+[x] calcularVolume -> Ryan Costa
 
 ## Engenharia Civil
 [x] momentoInerciaRetangular -> Matheus Vieira

@@ -1,4 +1,4 @@
-module Tests.AlgorithmsTests where
+module Tests.AlgorithmsTests (executarTestesEspecialista4) where
 
 import Types
 import Algorithms
