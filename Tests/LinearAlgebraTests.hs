@@ -213,8 +213,8 @@ testeProdutoEscalarOrtogonais =
   testeProdutoEscalarMesmoVetor :: Bool
   testeProdutoEscalarMesmoVetor =
     let v1 = vetor [3, 4]
-        resultado = produtoEscalar v1 v1
-        esperado = Just 25.0 --3*3 + 4*4 = 25
+      resultado = produtoEscalar v1 v1
+      esperado = Just 25.0 --3*3 + 4*4 = 25
     in resultado == esperado
 
 testeProdutoEscalarIncompativel :: Bool
@@ -299,3 +299,4 @@ testeAnguloVetoresZero =
     v2 = Vetor [1, 1]
     angulo = anguloEntreVetores v1 v2
   in angulo == Nothing -- vetor zero nao tem direcao definida
+
