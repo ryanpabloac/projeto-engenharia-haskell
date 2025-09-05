@@ -10,6 +10,6 @@ integralNumerica funcao limite_inferior limite_superior n = -- limites de integr
 
 derivadaNumerica :: Funcao-> Double-> Double -- Cálculo de Derivada pela definição newtoniana
 derivadaNumerica funcao x = 
-        ( avaliarFuncao funcao ( x + dx ) - avaliarFuncao funcao ( x )) / Δx -- f' (x) ~= (f ( x + dx ) + f (x)) / dx
+        ( avaliarFuncao funcao ( x + dx ) - avaliarFuncao funcao ( x )) / dx -- f' (x) ~= (f ( x + dx ) + f (x)) / dx
         where 
             dx = 1e-9
