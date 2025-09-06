@@ -11,9 +11,11 @@
 [x] calcularPerimetro -> Ryan Costa
 [x] calcularVolume -> Ryan Costa
 
-## Engenharia Civil
-[x] momentoInerciaRetangular -> Matheus Vieira
-[x] tensaoNormal -> Matheus Vieira
+## Engenharias
+[x]  todas -> Matheus Vieira
+
+## Cálculo
+[x] todas -> Matheus Vieira ( falta apenas o calculo de raizes )
 
 ## Algoritmos e Estruturas de Dados
 [x] quickSort -> Caio Fernandes
