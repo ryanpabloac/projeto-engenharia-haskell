@@ -11,7 +11,7 @@ integralNumerica funcao limite_inferior limite_superior n =                    -
 
 derivadaNumerica :: Funcao-> Double-> Double                                   -- Cálculo de Derivada pela definição newtoniana
 derivadaNumerica funcao x = 
-    ( avaliarFuncao funcao ( x + dx ) - avaliarFuncao funcao ( x )) / dx -- f' (x) ~= (f ( x + dx ) + f (x)) / dx
+    ( avaliarFuncao funcao ( x + dx ) - avaliarFuncao funcao ( x )) / dx       -- f' (x) ~= (f ( x + dx ) + f (x)) / dx
         where dx = 1e-9
 
 pontosCriticos :: Funcao -> Double -> Double -> [Double]                       -- Cálculo dos pontos candidatos à serem críticos;
