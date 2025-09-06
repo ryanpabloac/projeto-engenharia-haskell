@@ -7,7 +7,7 @@ momentoInerciaRetangular largura_base altura_seccao =
    (largura_base * (altura_seccao ^ 3)) / 12
    
 tensaoNormal :: Forca -> Area -> Pressao
-tensaoNormal _ 0 = error  error "Erro: Área da secção não pode ser zero, acarretando em divisão por zero, gerando indeterminação"
+tensaoNormal _ 0 = error  "Erro: Área da secção não pode ser zero, acarretando em divisão por zero, gerando indeterminação"
 tensaoNormal forca_aplicada a_seccao_transversal =
    forca_aplicada / a_seccao_transversal
 
@@ -23,11 +23,11 @@ cargaCriticaEuler elasticidade inercia comprimento =
         ( pi ** 2 * elasticidade * inercia ) / ( comprimento ** 2 )
         
 volumeConcreto :: Figura-> Volume
-volumeConcreto (Retangulo _ _) = error "Erro: Não existe volume de figuras planas"
-volumeConcreto (Circulo _) = error "Erro: Não existe volume de figuras planas"
-volumeConcreto (Triangulo _ _ _) = error "Erro: Não existe volume de figuras planas"
-volumeConcreto (Poligono _) = error "Erro: Não existe volume de figuras planas"
-volumeConcreto (Esfera raio)  = (4/3) * pi * (raio **3 )
+volumeConcreto (Retangulo _ _)         = error "Erro: Não existe volume de figuras planas"
+volumeConcreto (Circulo _)             = error "Erro: Não existe volume de figuras planas"
+volumeConcreto (Triangulo _ _ _)       = error "Erro: Não existe volume de figuras planas"
+volumeConcreto (Poligono _)            = error "Erro: Não existe volume de figuras planas"
+volumeConcreto (Esfera raio)           = (4/3) * pi * (raio **3 )
 volumeConcreto (Cilindro raio altura ) = pi * (raio**2) * altura
 volumeConcreto (Paralelepipedo comprimento largura altura ) = comprimento * largura * altura
 
