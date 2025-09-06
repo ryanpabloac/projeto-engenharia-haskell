@@ -22,5 +22,12 @@ cargaCriticaEuler _ _ 0 = error "Erro: Comprimento não pode ser zero, acarretan
 cargaCriticaEuler elasticidade inercia comprimento = 
         ( pi ** 2 * elasticidade * inercia ) / ( comprimento ** 2 )
         
-volumeConcreto :: Figura-> Volume -- Passar as mesmas funções de cálculo de volume
+volumeConcreto :: Figura-> Volume
+volumeConcreto (Retangulo _ _) = error "Erro: Não existe volume de figuras planas"
+volumeConcreto (Circulo _) = error "Erro: Não existe volume de figuras planas"
+volumeConcreto (Triangulo _ _ _) = error "Erro: Não existe volume de figuras planas"
+volumeConcreto (Poligono _) = error "Erro: Não existe volume de figuras planas"
+volumeConcreto (Esfera raio)  = (4/3) * pi * (raio **3 )
+volumeConcreto (Cilindro raio altura ) = pi * (raio**2) * altura
+volumeConcreto (Paralelepipedo comprimento largura altura ) = comprimento * largura * altura
 
