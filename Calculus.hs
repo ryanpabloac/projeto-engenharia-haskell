@@ -2,8 +2,22 @@ module Calculus where
 
 import Types
 
+avaliarFuncao :: Funcao -> Double -> Double                                   -- Definição dos tipos das funções, com o cálculo de f (x) para todas os tipos de funções
+avaliarFuncao ( Funcao ( Linear a b ) _ ) x = a * x + b
+avaliarFuncao ( Funcao ( Quadratica a b c ) _ ) x = a * ( x ** 2 ) + b * x + c
+avaliarFuncao ( Funcao ( Exponencial a b ) _ ) x = a * exp ( b * x )
+avaliarFuncao ( Funcao ( Logaritmica a b ) _ ) x
+        | x <= 0     = error "Erro: Logaritmo indefinido "
+        | b * x <= 0 = error "Erro: Argumento inválido"
+        | otherwise  = a * log ( b * x )
+avaliarFuncao ( Funcao ( Trigonometrica tipo a b ) _ ) x =
+    case tipo of
+        Seno     -> a * sin ( b * x )
+        Cosseno  -> a * cos ( b * x )
+        Tangente -> a * tan ( b * x )
+
 integralNumerica :: Funcao -> Double -> Double -> Int -> Double                -- Cálculo de Integral com Base na Soma de Riemann;
-integralNumerica funcao limite_inferior limite_superior n =                    -- limites de integração e a quantidade de retângulos para representar a função;
+integralNumerica funcao limite_inferior limite_superior n                      -- limites de integração e a quantidade de retângulos para representar a função;
    | limite_inferior > limite_superior = error "Erro: limite inferior maior do que limite superior, não é possível calcular a integral" 
    | otherwise = sum [ avaliarFuncao funcao ( limite_inferior + base * fromIntegral posicao ) * base 
             | posicao <- [0 .. n - 1]]                                         -- Realiza a Soma das àrea dos retângulos, área calculada por f (x) * base;
@@ -11,7 +25,7 @@ integralNumerica funcao limite_inferior limite_superior n =                    -
 
 derivadaNumerica :: Funcao-> Double-> Double                                   -- Cálculo de Derivada pela definição newtoniana
 derivadaNumerica funcao x = 
-    ( avaliarFuncao funcao ( x + dx ) - avaliarFuncao funcao ( x )) / dx       -- f' (x) ~= (f ( x + dx ) + f (x)) / dx
+    ( avaliarFuncao funcao ( x + dx ) - avaliarFuncao funcao ( x )) / dx       -- f' (x) ~= (f ( x + dx ) - f (x)) / dx
         where dx = 1e-9
 
 pontosCriticos :: Funcao -> Double -> Double -> [Double]                       -- Cálculo dos pontos candidatos à serem críticos;
@@ -21,7 +35,7 @@ pontosCriticos funcao limite_inferior limite_superior =
           derivada2 = derivadaNumerica funcao (x + dx)
     , derivada1 * derivada2 <= 0 ]                                             -- Por definição se a derivada númerica trocar de sinal, o ponto é um candidato à máximo ou mínimo ;
      where
-        dx = 1e-4
+        dx = 1e-2
         
 encontrarMaximo :: Funcao -> Double -> Double -> Maybe Double                  -- Calcúlo do máximo de um intervalo numérico;
 encontrarMaximo funcao limite_inferior limite_superior
