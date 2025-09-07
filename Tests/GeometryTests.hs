@@ -221,7 +221,6 @@ testePerimetroTriangulo =
     in abs (perimetro - esperado) < 0.001
 
 -- Testes para dentroDoPoligono
-{-
 testeDentroPoligonoQuadrado :: Bool
 testeDentroPoligonoQuadrado =
     let quadrado = [Ponto2D 0 0, Ponto2D 2 0, Ponto2D 2 2, Ponto2D 0 2]
@@ -253,7 +252,7 @@ testeDentroPoligonoVazio =
     let poligonoVazio = []
         ponto = Ponto2D 1 1
     in not (dentroDoPoligono ponto poligonoVazio)
-
+    
 -- Testes para intersecaoRetas
 testeIntersecaoRetasBasico :: Bool
 testeIntersecaoRetasBasico =
@@ -292,7 +291,6 @@ testeIntersecaoRetasNegativas =
         resultado = intersecaoRetas reta1 reta2
         esperado = Just (Ponto2D 0 0)
     in resultado == esperado
-  -} 
     
     
 -- Lista de testes: (nome do teste, resultado Bool)
@@ -327,16 +325,16 @@ todosTestes =
     , ("testePerimetroCirculoUnitario", testePerimetroCirculoUnitario)
     , ("testePerimetroQuadrado", testePerimetroQuadrado)
     , ("testePerimetroTriangulo", testePerimetroTriangulo)
-    --, ("testeDentroPoligonoQuadrado", testeDentroPoligonoQuadrado)
-    --, ("testeDentroPoligonoTriangulo", testeDentroPoligonoTriangulo)
-   -- , ("testeDentroPoligonoBorda", testeDentroPoligonoBorda)
-    --, ("testeDentroPoligonoVertice", testeDentroPoligonoVertice)
-  --  , ("testeDentroPoligonoVazio", testeDentroPoligonoVazio)
-   -- , ("testeIntersecaoRetasBasico", testeIntersecaoRetasBasico)
-    --, ("testeIntersecaoRetasParalelas", testeIntersecaoRetasParalelas)
-    --, ("testeIntersecaoRetasCoincidentes", testeIntersecaoRetasCoincidentes)
-    --, ("testeIntersecaoRetasPerpendicualres", testeIntersecaoRetasPerpendicualres)
-    --, ("testeIntersecaoRetasNegativas", testeIntersecaoRetasNegativas)
+    , ("testeDentroPoligonoQuadrado", testeDentroPoligonoQuadrado)
+    , ("testeDentroPoligonoTriangulo", testeDentroPoligonoTriangulo)
+    , ("testeDentroPoligonoBorda", testeDentroPoligonoBorda)
+    , ("testeDentroPoligonoVertice", testeDentroPoligonoVertice)
+    , ("testeDentroPoligonoVazio", testeDentroPoligonoVazio)
+    , ("testeIntersecaoRetasBasico", testeIntersecaoRetasBasico)
+    , ("testeIntersecaoRetasParalelas", testeIntersecaoRetasParalelas)
+    , ("testeIntersecaoRetasCoincidentes", testeIntersecaoRetasCoincidentes)
+    , ("testeIntersecaoRetasPerpendicualres", testeIntersecaoRetasPerpendicualres)
+    , ("testeIntersecaoRetasNegativas", testeIntersecaoRetasNegativas)
     ]
 
 -- Executa todos os testes e mostra o resultado

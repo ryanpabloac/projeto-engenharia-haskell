@@ -27,8 +27,8 @@ calcularArea (Cilindro r a) = 2 * pi * r * (r+a)
 calcularArea (Paralelepipedo c l a) = 2 * (c*l + c*a + l*a)
 calcularArea (Poligono xs) = area
    where
-    pareamento = zip xs (tail xs ++ [head xs])
-    soma = sum [x0*y1 | (Ponto2D x0 _, Ponto2D _ y1) <- pareamento] - sum [y0*x1 | (Ponto2D _ y0, Ponto2D x1 _) <- pareamento] 
+    soma = sum [x0*y1 | (Ponto2D x0 _, Ponto2D _ y1) <- (pareamento xs)] - 
+           sum [y0*x1 | (Ponto2D _ y0, Ponto2D x1 _) <- (pareamento xs)] 
     area = (abs soma) / 2
    
    
@@ -45,10 +45,7 @@ calcularPerimetro (Triangulo p0 p1 p2) = l1 + l2 + l3
 calcularPerimetro (Esfera _) = error "Não existe perímetro de figuras espaciais"
 calcularPerimetro (Cilindro _ _) = error "Não existe perímetro de figuras espaciais"
 calcularPerimetro (Paralelepipedo _ _ _) = error "Não existe perímetro de figuras espacias"
-calcularPerimetro (Poligono xs) = sum [distanciaEntrePontos p0 p1 | (p0,p1) <- pareamento]
-   where
-    pareamento = zip xs (tail xs ++ [head xs])
-    
+calcularPerimetro (Poligono xs) = sum [distanciaEntrePontos p0 p1 | (p0,p1) <- (pareamento xs)]
     
 -- Funções de volume de figuras
 calcularVolume :: Figura -> Volume
@@ -61,6 +58,40 @@ calcularVolume (Esfera r) = (4/3) * pi * (r**3)
 calcularVolume (Cilindro r a) = pi * (r**2) * a
 calcularVolume (Paralelepipedo c l a) = c * l * a
 
-dentroDoPoligono :: Ponto2D -> [Ponto2D] -> Bool
-dentroDoPoligono
 
+intersecaoRetas :: (Ponto2D, Ponto2D) -> (Ponto2D, Ponto2D) -> Maybe Ponto2D
+intersecaoRetas r0 r1
+   | a0 == a1 = Nothing
+   | vertical r0 = Just (Ponto2D x0 (a1*x0 + b1))
+   | vertical r1 = Just (Ponto2D x1 (a0*x1 + b0))
+   | otherwise = Just (Ponto2D x y)
+    where
+     (Ponto2D x0 y0, _) = r0
+     (Ponto2D x1 y1, _) = r1
+     vertical (Ponto2D x0 _, Ponto2D x1 _) = x0 == x1
+     (a0,b0) = coef r0
+     (a1,b1) = coef r1
+     x = (b1-b0)/(a0-a1)
+     y = a0*x + b0
+     
+     
+dentroDoPoligono :: Ponto2D -> [Ponto2D] -> Bool
+dentroDoPoligono (Ponto2D px py)  ps = odd $ length [True | pa <- pareamento ps,
+                                       temRetorno $ intersecaoRetas pa (p0, Ponto2D (px+1) py)]
+   where
+     p0 = (Ponto2D px py)
+     temRetorno f = case f of
+                    Just _ -> True
+                    Nothing -> False
+
+-- || FUNÇÕES AUXILIARES ||
+
+pareamento :: [Ponto2D] -> [(Ponto2D, Ponto2D)]
+pareamento xs = zip xs (tail xs ++ [head xs])
+    
+coef :: (Ponto2D, Ponto2D) -> (Double, Double) -- (cAngular, cLinear)
+coef (Ponto2D x0 y0, Ponto2D x1 y1) = (a,b)
+   where
+     a = (y1-y0) / (x1-x0)
+     b = y1 - a*x1
+   
