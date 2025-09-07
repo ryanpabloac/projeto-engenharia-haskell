@@ -12,9 +12,9 @@ avaliarFuncao ( Funcao ( Logaritmica a b ) _ ) x
         | otherwise  = a * log ( b * x )
 avaliarFuncao ( Funcao ( Trigonometrica tipo a b ) _ ) x =
     case tipo of
-        Seno     -> a * sin ( b * x )
-        Cosseno  -> a * cos ( b * x )
-        Tangente -> a * tan ( b * x )
+        Seno     -> a * sin ( x ) + b 
+        Cosseno  -> a * cos ( x ) + b
+        Tangente -> a * tan ( x ) + b
 
 integralNumerica :: Funcao -> Double -> Double -> Int -> Double                -- Cálculo de Integral com Base na Soma de Riemann;
 integralNumerica funcao limite_inferior limite_superior n                      -- limites de integração e a quantidade de retângulos para representar a função;
@@ -46,7 +46,7 @@ pontosCriticos funcao limite_inferior limite_superior =
      where
         dx = 1e-3
         
-encontrarMaximo :: Funcao -> Double -> Double -> Maybe Double                 
+-- encontrarMaximo :: Funcao -> Double -> Double -> Maybe Double  nao esta funcionando               
 encontrarMaximo funcao limite_inferior limite_superior
     | limite_inferior > limite_superior = Nothing                              
     | null pontos                       = Just ( maximum [avaliarFuncao funcao limite_inferior , avaliarFuncao funcao limite_superior ]) 
@@ -56,17 +56,17 @@ encontrarMaximo funcao limite_inferior limite_superior
             pontos = limite_inferior : limite_superior : candidatos
             fx = map (avaliarFuncao funcao) pontos
 
-encontrarMinimo :: Funcao -> Double -> Double -> Maybe Double                  -- Calcúlo do mínimo de um intervalo numérico;
+-- encontrarMinimo :: Funcao -> Double -> Double -> Maybe Double    nao esta funcionando             
 encontrarMinimo funcao limite_inferior limite_superior
-    | limite_inferior > limite_superior = Nothing                              -- Intervalo inválido, não é possível calcular os pontos de mínimo;
-    | null pontos                       = Just ( minimum [avaliarFuncao funcao limite_inferior , avaliarFuncao funcao limite_superior ]) -- Caso não houver pontos candidatos à critico;
-    | otherwise                         = Just ( minimum fx )                  -- Encontra o menor valor que a função pode atingir em dado intervalo;
+    | limite_inferior > limite_superior = Nothing                              
+    | null pontos                       = Just ( minimum [avaliarFuncao funcao limite_inferior , avaliarFuncao funcao limite_superior ]) 
+    | otherwise                         = Just ( minimum fx )                 
         where 
             candidatos = pontosCriticos funcao limite_inferior limite_superior
             pontos = limite_inferior : limite_superior : candidatos
             fx = map (avaliarFuncao funcao) pontos
             
-calcularComprimentoCurva :: Funcao -> Double -> Double -> Comprimento          -- Uso da definição de cálculo de comprimento de curvas utilizando integral e derivadas
+-- calcularComprimentoCurva :: Funcao -> Double -> Double -> Comprimento          -- Uso da definição de cálculo de comprimento de curvas utilizando integral e derivadas
 calcularComprimentoCurva funcao limite_inferior limite_superior = 
     integralNumerica f  limite_inferior limite_superior 10000
        where f x = sqrt ( 1 + ( derivadaNumerica funcao x ) ^ 2 ) 
