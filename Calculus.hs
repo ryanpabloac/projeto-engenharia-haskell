@@ -37,20 +37,20 @@ encontrarRaizes funcao limite_inferior limite_superior =
             dx = 1e-3
             tol = 1e-6
 
-pontosCriticos :: Funcao -> Double -> Double -> [Double]                       -- Cálculo dos pontos candidatos à serem críticos;
+pontosCriticos :: Funcao -> Double -> Double -> [Double]                       
 pontosCriticos funcao limite_inferior limite_superior =
-    [ x | x <- [limite_inferior, limite_inferior + dx .. limite_superior - dx] -- Passa por pontos do intervalo;
-    , let derivada1 = derivadaNumerica funcao x                                -- Cálculo da derivada numericas do ponto e de seu sucessor;
+    [ x | x <- [limite_inferior, limite_inferior + dx .. limite_superior - dx] 
+    , let derivada1 = derivadaNumerica funcao x                                
           derivada2 = derivadaNumerica funcao (x + dx)
-    , derivada1 * derivada2 <= 0 ]                                             -- Por definição se a derivada númerica trocar de sinal, o ponto é um candidato à máximo ou mínimo ;
+    , derivada1 * derivada2 <= 0 ]                                             
      where
-        dx = 1e-2
+        dx = 1e-3
         
-encontrarMaximo :: Funcao -> Double -> Double -> Maybe Double                  -- Calcúlo do máximo de um intervalo numérico;
+encontrarMaximo :: Funcao -> Double -> Double -> Maybe Double                 
 encontrarMaximo funcao limite_inferior limite_superior
-    | limite_inferior > limite_superior = Nothing                              -- Intervalo inválido, não é possível calcular os pontos de máximo;
-    | null pontos                       = Just ( maximum [avaliarFuncao funcao limite_inferior , avaliarFuncao funcao limite_superior ]) -- Caso não houver pontos candidatos à critico;
-    | otherwise                         = Just ( maximum fx )                  -- Encontra o maior valor que a função pode atingir em dado intervalo
+    | limite_inferior > limite_superior = Nothing                              
+    | null pontos                       = Just ( maximum [avaliarFuncao funcao limite_inferior , avaliarFuncao funcao limite_superior ]) 
+    | otherwise                         = Just ( maximum fx )                  
          where 
             candidatos = pontosCriticos funcao limite_inferior limite_superior
             pontos = limite_inferior : limite_superior : candidatos
@@ -68,5 +68,5 @@ encontrarMinimo funcao limite_inferior limite_superior
             
 calcularComprimentoCurva :: Funcao -> Double -> Double -> Comprimento          -- Uso da definição de cálculo de comprimento de curvas utilizando integral e derivadas
 calcularComprimentoCurva funcao limite_inferior limite_superior = 
-    integralNumerica f limite_inferior limite_superior 10000
+    integralNumerica f  limite_inferior limite_superior 10000
        where f x = sqrt ( 1 + ( derivadaNumerica funcao x ) ^ 2 ) 
