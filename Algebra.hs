@@ -1,8 +1,8 @@
 -- 4 funções iniciais => Cadu 
--- falta a função resolverSistemasLineares => Diogo
 module LinearAlgebra where
 
 import Types (Angulo, Matriz(..), Vetor(..))
+import Data.Maybe (fromJust)  -- pega uma funcao que retorna Maybe e retorna apenas o que esta na frente do Just
 
 
 
@@ -14,6 +14,20 @@ import Types (Angulo, Matriz(..), Vetor(..))
 
 
 
+
+
+
+
+resolverSistemaLinear :: Matriz -> Vetor -> Maybe Vetor -- Usando metodo de cramer
+resolverSistemaLinear (Matriz [[]]) _ = Nothing
+resolverSistemaLinear (Matriz xss) (Vetor ys) 
+    |all (\colunas -> length colunas == length xss) xss =
+        if (fromJust (determinante (Matriz xss))) == 0 then Nothing
+            else Just (Vetor ([fromJust (determinante(sub (Matriz xss) (Vetor ys) i))/d | i <- [0 .. ((length ys) - 1)]]))
+    |otherwise = Nothing
+    where d = fromJust (determinante (Matriz xss))
+          -- substitui a coluna inteira pelo vetor
+          sub (Matriz xss) (Vetor ys) i = Matriz (zipWith (\linha vetorElemento -> take i linha ++ [vetorElemento] ++ drop (i + 1) linha) xss ys)
 
 produtoEscalar :: Vetor -> Vetor -> Maybe Double
 produtoEscalar _ (Vetor []) = Nothing
