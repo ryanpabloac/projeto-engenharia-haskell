@@ -21,7 +21,7 @@
 [x]  todas -> Matheus Vieira
 
 ## Cálculo
-[x] todas -> Matheus Vieira ( falta apenas o calculo de raizes )
+[x] todas -> Matheus Vieira 
 
 ## Algoritmos e Estruturas de Dados
 [x] quickSort -> Caio Fernandes
