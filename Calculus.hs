@@ -28,6 +28,15 @@ derivadaNumerica funcao x =
     ( avaliarFuncao funcao ( x + dx ) - avaliarFuncao funcao ( x )) / dx       -- f' (x) ~= (f ( x + dx ) - f (x)) / dx
         where dx = 1e-9
 
+encontrarRaizes :: Funcao -> Double -> Double -> [Double]
+encontrarRaizes funcao limite_inferior limite_superior = 
+    [ x | x <- [limite_inferior, limite_inferior + dx .. limite_superior - dx]
+    , let fx = avaliarFuncao funcao x
+    , abs fx < tol ]
+          where
+            dx = 1e-3
+            tol = 1e-6
+
 pontosCriticos :: Funcao -> Double -> Double -> [Double]                       -- Cálculo dos pontos candidatos à serem críticos;
 pontosCriticos funcao limite_inferior limite_superior =
     [ x | x <- [limite_inferior, limite_inferior + dx .. limite_superior - dx] -- Passa por pontos do intervalo;
