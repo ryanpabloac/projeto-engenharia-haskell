@@ -2,7 +2,7 @@ module Calculus where
 
 import Types
 
-avaliarFuncao :: Funcao -> Double -> Double                                   -- Definição dos tipos das funções, com o cálculo de f (x) para todas os tipos de funções
+avaliarFuncao :: Funcao -> Double -> Double                                   
 avaliarFuncao ( Funcao ( Linear a b ) _ ) x = a * x + b
 avaliarFuncao ( Funcao ( Quadratica a b c ) _ ) x = a * ( x ** 2 ) + b * x + c
 avaliarFuncao ( Funcao ( Exponencial a b ) _ ) x = a * exp ( b * x )
@@ -16,16 +16,16 @@ avaliarFuncao ( Funcao ( Trigonometrica tipo a b ) _ ) x =
         Cosseno  -> a * cos ( x ) + b
         Tangente -> a * tan ( x ) + b
 
-integralNumerica :: Funcao -> Double -> Double -> Int -> Double                -- Cálculo de Integral com Base na Soma de Riemann;
-integralNumerica funcao limite_inferior limite_superior n                      -- limites de integração e a quantidade de retângulos para representar a função;
+integralNumerica :: Funcao -> Double -> Double -> Int -> Double               
+integralNumerica funcao limite_inferior limite_superior n                      
    | limite_inferior > limite_superior = error "Erro: limite inferior maior do que limite superior, não é possível calcular a integral" 
    | otherwise = sum [ avaliarFuncao funcao ( limite_inferior + base * fromIntegral posicao ) * base 
-            | posicao <- [0 .. n - 1]]                                         -- Realiza a Soma das àrea dos retângulos, área calculada por f (x) * base;
-     where base = ( limite_superior - limite_inferior ) / fromIntegral n       -- base de cada retângulo;
+            | posicao <- [0 .. n - 1]]                                         
+     where base = ( limite_superior - limite_inferior ) / fromIntegral n       
 
-derivadaNumerica :: Funcao-> Double-> Double                                   -- Cálculo de Derivada pela definição newtoniana
+derivadaNumerica :: Funcao-> Double-> Double                                 
 derivadaNumerica funcao x = 
-    ( avaliarFuncao funcao ( x + dx ) - avaliarFuncao funcao ( x )) / dx       -- f' (x) ~= (f ( x + dx ) - f (x)) / dx
+    ( avaliarFuncao funcao ( x + dx ) - avaliarFuncao funcao ( x )) / dx       
         where dx = 1e-9
 
 encontrarRaizes :: Funcao -> Double -> Double -> [Double]
