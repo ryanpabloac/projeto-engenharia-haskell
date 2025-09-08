@@ -78,7 +78,4 @@ encontrarMinimo funcao limite_inferior limite_superior
     criticos = pontosCriticos funcao limite_inferior limite_superior
     pontos   = limite_inferior : limite_superior : criticos
             
-calcularComprimentoCurva :: Funcao -> Double -> Double -> Comprimento          
-calcularComprimentoCurva funcao limite_inferior limite_superior = 
-    integralNumerica f  limite_inferior limite_superior 10000
-       where f x = sqrt ( 1 + ( derivadaNumerica funcao x ) ^ 2 ) 
+        
