@@ -21,7 +21,7 @@
 [x]  todas -> Matheus Vieira
 
 ## Cálculo
-[x] todas -> Matheus Vieira 
+[x] todas -> Matheus Vieira - falta comprimento de curva ( não sei como fazer  )
 
 ## Algoritmos e Estruturas de Dados
 [x] quickSort -> Caio Fernandes
