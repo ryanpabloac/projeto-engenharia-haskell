@@ -37,36 +37,48 @@ encontrarRaizes funcao limite_inferior limite_superior =
             dx = 1e-3
             tol = 1e-6
 
-pontosCriticos :: Funcao -> Double -> Double -> [Double]                       
+pontosCriticos :: Funcao -> Double -> Double -> [Double]
 pontosCriticos funcao limite_inferior limite_superior =
-    [ x | x <- [limite_inferior, limite_inferior + dx .. limite_superior - dx] 
-    , let derivada1 = derivadaNumerica funcao x                                
-          derivada2 = derivadaNumerica funcao (x + dx)
-    , derivada1 * derivada2 <= 0 ]                                             
-     where
-        dx = 1e-3
-        
--- encontrarMaximo :: Funcao -> Double -> Double -> Maybe Double  nao esta funcionando               
-encontrarMaximo funcao limite_inferior limite_superior
-    | limite_inferior > limite_superior = Nothing                              
-    | null pontos                       = Just ( maximum [avaliarFuncao funcao limite_inferior , avaliarFuncao funcao limite_superior ]) 
-    | otherwise                         = Just ( maximum fx )                  
-         where 
-            candidatos = pontosCriticos funcao limite_inferior limite_superior
-            pontos = limite_inferior : limite_superior : candidatos
-            fx = map (avaliarFuncao funcao) pontos
+    [ x
+    | x <- [limite_inferior, limite_inferior + dx .. limite_superior - dx]
+    , let derivada = derivadaNumerica funcao x
+    , abs derivada < tol
+    ]
+  where
+    dx  = 1e-5   
+    tol = 1e-4   
 
--- encontrarMinimo :: Funcao -> Double -> Double -> Maybe Double    nao esta funcionando             
+ponto_maximo :: Funcao -> [Double] -> Maybe Double
+ponto_maximo _ []     = Nothing
+ponto_maximo _ [x]    = Just x
+ponto_maximo funcao (a:b:xs)
+    | avaliarFuncao funcao  a >= avaliarFuncao funcao  b = ponto_maximo funcao  (a:xs)
+    | otherwise                                          = ponto_maximo funcao  (b:xs)
+
+ponto_minimo :: Funcao -> [Double] -> Maybe Double
+ponto_minimo _ []     = Nothing
+ponto_minimo _ [x]    = Just x
+ponto_minimo funcao (a:b:xs)
+    | avaliarFuncao funcao  a <= avaliarFuncao funcao  b = ponto_minimo funcao  (a:xs)
+    | otherwise                                          = ponto_minimo funcao  (b:xs)
+
+encontrarMaximo :: Funcao -> Double -> Double -> Maybe Double
+encontrarMaximo funcao limite_inferior limite_superior
+    | limite_inferior > limite_superior = Nothing
+    | otherwise = ponto_maximo funcao pontos
+  where 
+    criticos = pontosCriticos funcao limite_inferior limite_superior
+    pontos   = limite_inferior : limite_superior : criticos
+
+encontrarMinimo :: Funcao -> Double -> Double -> Maybe Double
 encontrarMinimo funcao limite_inferior limite_superior
-    | limite_inferior > limite_superior = Nothing                              
-    | null pontos                       = Just ( minimum [avaliarFuncao funcao limite_inferior , avaliarFuncao funcao limite_superior ]) 
-    | otherwise                         = Just ( minimum fx )                 
-        where 
-            candidatos = pontosCriticos funcao limite_inferior limite_superior
-            pontos = limite_inferior : limite_superior : candidatos
-            fx = map (avaliarFuncao funcao) pontos
+    | limite_inferior > limite_superior = Nothing
+    | otherwise = ponto_minimo funcao pontos
+  where 
+    criticos = pontosCriticos funcao limite_inferior limite_superior
+    pontos   = limite_inferior : limite_superior : criticos
             
--- calcularComprimentoCurva :: Funcao -> Double -> Double -> Comprimento          -- Uso da definição de cálculo de comprimento de curvas utilizando integral e derivadas
+calcularComprimentoCurva :: Funcao -> Double -> Double -> Comprimento          
 calcularComprimentoCurva funcao limite_inferior limite_superior = 
     integralNumerica f  limite_inferior limite_superior 10000
        where f x = sqrt ( 1 + ( derivadaNumerica funcao x ) ^ 2 ) 
