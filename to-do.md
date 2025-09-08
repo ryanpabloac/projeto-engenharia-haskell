@@ -17,9 +17,6 @@
 [x] calcularVolume -> Ryan Costa
 [x] intersecaoRetas -> Ryan Costa
 
-## Engenharias
-[x]  todas -> Matheus Vieira
-
 ## Cálculo
 [x] todas -> Matheus Vieira - falta comprimento de curva ( não sei como fazer  )
 
