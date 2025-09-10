@@ -3,16 +3,32 @@ module LinearAlgebra where
 
 import Types (Angulo, Matriz(..), Vetor(..))
 import Data.Maybe (fromJust)  -- pega uma funcao que retorna Maybe e retorna apenas o que esta na frente do Just
+import Data.List (transpose) -- pega da biblioteca uma função que faz o processo de transposição de uma matriz.
 
+-- /////////// AUXILIARES ///////////////
 
+tamanho :: Matriz -> (Int, Int) -- (n. linhas, n. colunas)
+tamanho (Matriz mat) =
+    (length  mat, length (head mat))
+    -- 1 > length mat conta as linhas
+    -- 2 > length (head mat) conta o numero de elementos, logo, a quantidade de colunas.
 
+verTamanhoIgual :: Matriz -> Matriz -> Bool
+verTamanhoIgual (Matriz mat1) (Matriz mat2) =
+    tamanho(Matriz mat1) == tamanho(Matriz mat2)
+    -- compara (linha.mat1, coluna.mat1) com (linha.mat2, coluna.mat2); 
+    
+    
+-- //////////// PRINCIPAIS ///////////////
 
+somarMatrizes :: Matriz -> Matriz -> Maybe Matriz
+somarMatrizes (Matriz mat1) (Matriz mat2)  
+    |verTamanhoIgual (Matriz mat1) (Matriz mat2) = Just(Matriz (zipWith (zipWith (+)) mat1 mat2))        -- verifica se as matrizes tem mesmo tamanho e, se tiverem, a soma é feita com o zipwith aninhado que atua sobre cada elemento delas.
+    |otherwise = Nothing -- matrizes de ordem diferentes não podem ser somadas. 
 
-
-
-
-
-
+transpostaMatriz :: Matriz -> Matriz
+transposta (Matriz mat1) =
+    Matriz (transpose mat1) -- usa a função importada de Data.List para transpor a matriz.
 
 
 
