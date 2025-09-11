@@ -1,4 +1,4 @@
-module Engineering.Civil where
+module Engineering.ALL where
 
 import Types
 
@@ -30,10 +30,6 @@ volumeConcreto (Poligono _)            = error "Erro: Não existe volume de figu
 volumeConcreto (Esfera raio)           = (4/3) * pi * (raio **3 )
 volumeConcreto (Cilindro raio altura ) = pi * (raio**2) * altura
 volumeConcreto (Paralelepipedo comprimento largura altura ) = comprimento * largura * altura
-
-module Engineering.Electrical where
-
-import Types
 
 tensaoOhm :: Corrente-> Resistencia-> Tensao
 tensaoOhm corrente resistencia = 
@@ -71,3 +67,32 @@ polarParaRetangular coordenada_radial angulo_teta =
 retangularParaPolar :: Double-> Double-> (Double, Angulo)
 retangularParaPolar x y = 
         ( sqrt ( x ** 2 + y ** 2 ), atan2 y x )
+
+calcularTorque :: Forca-> Distancia-> Angulo-> Torque
+calcularTorque força distancia_eixo angulo_força_raio = 
+        força * distancia_eixo * sin angulo_força_raio 
+
+velocidadeAngular :: Velocidade-> Raio-> VelocidadeAngular
+velocidadeAngular _ 0 = error "Erro: Módulo do raio não pode ser zero, acarretando em divisão por zero, gerando indeterminação"
+velocidadeAngular velocidade_linear raio = 
+        velocidade_linear / raio
+
+aceleracaocentripeta :: Velocidade-> Raio-> Aceleracao
+aceleracaocentripeta _ 0 = error "Erro: Módulo do raio não pode ser zero, acarretando em divisão por zero, gerando indeterminação"
+aceleracaocentripeta velocidade_tangecial raio = 
+        (velocidade_tangecial ** 2) / raio
+        
+energiaCinetica :: Massa-> Velocidade-> Energia
+energiaCinetica massa velocidade = 0.5 * massa * ( velocidade ** 2 )
+
+energiaPotencial :: Massa-> Altura-> Energia
+energiaPotencial massa altura = massa * 9.81 * altura 
+
+centroMassaX :: [(Massa, Distancia)]-> Distancia
+centroMassaX [] = error "Erro: Não há como calcular o centro de Massa de uma lista sem elementos"
+centroMassaX lista = soma_massa_posição lista / soma_massas lista
+    where soma_massa_posição [ ] = 0
+          soma_massa_posição ((a,b) : xs ) = a * b + soma_massa_posição xs
+          
+          soma_massas [ ] = 0
+          soma_massas ((a,_) : xs ) = a + soma_massas xs 
