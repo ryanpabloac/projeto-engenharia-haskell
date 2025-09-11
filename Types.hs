@@ -108,9 +108,9 @@ data Figura = Retangulo Largura Altura
             | Paralelepipedo Comprimento Largura Altura
     deriving (Show, Eq)
 
-data Matriz = Matriz [[Double]] deriving (Show, Eq)
+data Matriz = Matriz [[Double]] deriving (Show, Eq, Read)
 
-data Vetor = Vetor [Double] deriving (Show, Eq)
+data Vetor = Vetor [Double] deriving (Show, Eq, Read)
 
 data TipoFuncao = Linear Double Double-- ax + b
                 | Quadratica Double Double Double-- ax² + bx + c

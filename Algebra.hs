@@ -1,5 +1,4 @@
--- 4 funções iniciais => Cadu 
-module LinearAlgebra where
+module Algebra where
 
 import Types (Angulo, Matriz(..), Vetor(..))
 import Data.Maybe (fromJust)  -- pega uma funcao que retorna Maybe e retorna apenas o que esta na frente do Just
@@ -27,7 +26,7 @@ somarMatrizes (Matriz mat1) (Matriz mat2)
     |otherwise = Nothing -- matrizes de ordem diferentes não podem ser somadas. 
 
 transpostaMatriz :: Matriz -> Matriz
-transposta (Matriz mat1) =
+transpostaMatriz (Matriz mat1) =
     Matriz (transpose mat1) -- usa a função importada de Data.List para transpor a matriz.
 
 

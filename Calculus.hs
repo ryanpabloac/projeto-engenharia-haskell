@@ -37,17 +37,6 @@ encontrarRaizes funcao limite_inferior limite_superior =
             dx = 1e-3
             tol = 1e-6
 
-pontosCriticos :: Funcao -> Double -> Double -> [Double] -- Percorre um intervalo numérico do tipo [a,b] e calcula a derivada de x , caso for 0 ou muito proximo de 0 é adicionado a lista;
-pontosCriticos funcao limite_inferior limite_superior =
-    [ x
-    | x <- [limite_inferior, limite_inferior + dx .. limite_superior - dx]    
-    , let derivada = derivadaNumerica funcao x
-    , abs derivada < tol
-    ]
-  where
-    dx  = 1e-5   
-    tol = 1e-4   
-
 ponto_maximo :: Funcao -> [Double] -> Maybe Double -- Encontra o ponto de uma lista, que seja aquele que possui maior f(x)
 ponto_maximo _ []     = Nothing
 ponto_maximo _ [x]    = Just x
@@ -79,3 +68,15 @@ encontrarMinimo funcao limite_inferior limite_superior
     pontos   = limite_inferior : limite_superior : criticos
             
         
+-- || FUNÇÕES AUXILIARES ||
+
+pontosCriticos :: Funcao -> Double -> Double -> [Double] -- Percorre um intervalo numérico do tipo [a,b] e calcula a derivada de x , caso for 0 ou muito proximo de 0 é adicionado a lista;
+pontosCriticos funcao limite_inferior limite_superior =
+    [ x
+    | x <- [limite_inferior, limite_inferior + dx .. limite_superior - dx]    
+    , let derivada = derivadaNumerica funcao x
+    , abs derivada < tol
+    ]
+  where
+    dx  = 1e-5   
+    tol = 1e-4   
