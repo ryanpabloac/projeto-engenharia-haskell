@@ -31,6 +31,7 @@ hubMenus menu =
    case menu of
       "principal" -> menuPrincipal
       "calculo"   -> menuCálculo
+      "geometria" -> menuGeometria
 
 
 -- |Menus Específicos
@@ -42,18 +43,17 @@ menuPrincipal = do
    case op of
       0 -> do putStrLn "Programa encerrado!"
               return ()
+      1 -> do hubMenus "geometria"
       3 -> do hubMenus "calculo"
       
    where
       listaOp = [
+       "[1] Geometria Analítica",
        "[3] Cálculo Diferencial e Integral",
        "[0] Sair"]
       opMin = 0
       opMax = 6
-      
- {-
-    "[6] Executar todos os testes",
- -}
+
 menuCálculo :: IO ()
 menuCálculo = do
    exibirOpções listaOp
@@ -200,28 +200,63 @@ menuGeometria = do
 
     case op of
       1 -> do
-          putStrLn "Calculando a distância entre dois pontos 2D..."
-          -- Código para coletar pontos e chamar a função distanciaEntrePontos
+          putStrLn "Calculando distância 2D"
+          ponto0 <- lerPonto2D
+          ponto1 <- lerPonto2D
+          let resultado = distanciaEntrePontos ponto0 ponto1
+          putStrLn $ "Resultado: " ++ (show resultado)
+          hubMenus "geometria"
+          
       2 -> do
-          putStrLn "Calculando a distância entre dois pontos 3D..."
-          -- Código para coletar pontos e chamar a função distancia3D
+          putStrLn "Calculando distância 3D"
+          ponto0 <- lerPonto3D
+          ponto1 <- lerPonto3D
+          let resultado = distancia3D ponto0 ponto1
+          putStrLn $ "Resultado: " ++ (show resultado)
+          hubMenus "geometria"
+          
       3 -> do
-          putStrLn "Calculando o ponto médio entre dois pontos 2D..."
-          -- Código para coletar pontos e chamar a função pontoMedio
+          putStrLn "Calculando ponto médio"
+          ponto0 <- lerPonto2D
+          ponto1 <- lerPonto2D
+          let resultado = pontoMedio ponto0 ponto1
+          putStrLn $ "Resultado: " ++ (show resultado)
+          hubMenus "geometria"
+          
       4 -> do
-          putStrLn "Calculando a área de uma figura..."
-          -- Código para coletar a figura e chamar a função calcularArea
+          putStrLn "Calculando a área"
+          fig <- lerFigura
+          let resultado = calcularArea fig
+          putStrLn $ "Resultado: " ++ (show resultado)
+          hubMenus "geometria"
+          
       5 -> do
-          putStrLn "Calculando o perímetro de uma figura..."
-          -- Código para coletar a figura e chamar a função calcularPerimetro
+          putStrLn "Calculando o perímetro"
+          fig <- lerFigura
+          let resultado = calcularPerimetro fig
+          putStrLn $ "Resultado: " ++ (show resultado)
+          hubMenus "geometria"
+          
       6 -> do
-          putStrLn "Calculando o volume de uma figura..."
-          -- Código para coletar a figura e chamar a função calcularVolume
+          putStrLn "Calculando o volume"
+          fig <- lerFigura
+          let resultado = calcularVolume fig
+          putStrLn $ "Resultado: " ++ (show resultado)
+          hubMenus "geometria"
+          
       7 -> do
-          putStrLn "Encontrando a interseção entre duas retas..."
-          -- Código para coletar as retas e chamar a função intersecaoRetas
+          putStrLn "Encontrando a interseção entre duas retas"
+          putStrLn "Coordenadas da reta 1"
+          p0 <- lerPonto2D
+          p1 <- lerPonto2D
+          putStrLn "\nCoordenadas da reta 2"
+          p2 <- lerPonto2D
+          p3 <- lerPonto2D
+          let resultado = intersecaoRetas (p0,p1) (p2,p3)
+          putStrLn $ "Resultado: " ++ (show resultado)
+          hubMenus "geometria"
+          
       0 -> do
-          putStrLn "Retornando ao menu principal."
           hubMenus "principal"
 
   where
@@ -239,10 +274,98 @@ menuGeometria = do
     
 lerPonto2D :: IO Ponto2D
 lerPonto2D = do
-   putStr "\nEntre com a coordenada x: "
+   putStr "Entre com a coordenada x: "
    x <- readLn
    putStr "Entre com a coordenada y: "
    y <- readLn
    return (Ponto2D x y)
+   
+lerPontos2D :: IO [Ponto2D]
+lerPontos2D = do
+    putStrLn "Entre com um Ponto 2D (x y) ou pressione Enter para parar:"
+    line <- getLine
+    if null line
+        then return []
+        else do
+            let coords = map read (words line) :: [Double]
+            if length coords == 2
+                then do
+                    let ponto = Ponto2D (head coords) (last coords)
+                    resto <- lerPontos2D
+                    return (ponto : resto)
+                else do
+                    putStrLn "Entrada inválida. Por favor, entre com dois números."
+                    lerPontos2D
+   
+lerPonto3D :: IO Ponto3D
+lerPonto3D = do
+   putStr "\nEntre com a coordenada x: "
+   x <- readLn
+   putStr "Entre com a coordenada y: "
+   y <- readLn
+   putStr "Entre com a coordenada z: "
+   z <- readLn
+   return (Ponto3D x y z)
+   
+lerFigura :: IO Figura
+lerFigura = do
+   exibirOpções listaOp
+   op <- lerOpção opMin opMax
+
+   case op of
+      1 -> do
+         putStr "Entre com a largura: "
+         l <- readLn
+         putStr "Entre com a altura: "
+         a <- readLn
+         return (Retangulo l a)
+          
+      2 -> do
+         putStr "Entre com o raio: "
+         r <- readLn
+         return (Circulo r)
+          
+      3 -> do
+         p0 <- lerPonto2D
+         p1 <- lerPonto2D
+         p2 <- lerPonto2D
+         return (Triangulo p0 p1 p2)
+          
+      4 -> do
+          pontos <- lerPontos2D
+          return (Poligono pontos)
+          
+      5 -> do
+         putStr "Entre com o raio: "
+         r <- readLn
+         return (Esfera r)
+      6 -> do
+         putStr "Entre com a largura: "
+         l <- readLn
+         putStr "Entre com a altura: "
+         a <- readLn
+         putStr "Entre com a profundidade: "
+         p <- readLn
+         return (Paralelepipedo l a p)
+      7 -> do
+         putStr "Entre com o raio: "
+         r <- readLn
+         putStr "Entre com a altura: "
+         a <- readLn
+         return (Cilindro r a)
+
+  where
+    listaOp = [
+        "[1] Retângulo",
+        "[2] Circulo",
+        "[3] Triangulo",
+        "[4] Poligono",
+        "[5] Esfera",
+        "[6] Paralelepipedo",
+        "[7] Cilindro"]
+    opMin = 0
+    opMax = 7
+   
+ 
       
       
