@@ -1,4 +1,4 @@
-module Algoritmos where
+module Algorithms where
 
 -- função merge sort (dividir e conquistar)
 mergeSort :: (Ord a) => [a] -> [a]

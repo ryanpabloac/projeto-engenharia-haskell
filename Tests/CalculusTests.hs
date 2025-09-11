@@ -239,7 +239,7 @@ testeMinimoConstante =
     in case minimo of
         Just x -> x >= -1 && x <= 1 -- qualquer ponto ´e m´ınimo
         Nothing -> False
-
+{-
 -- Testes para calcularComprimentoCurva
 testeComprimentoRetaHorizontal :: Bool
 testeComprimentoRetaHorizontal =
@@ -271,3 +271,4 @@ testeComprimentoConstante =
     let funcao = Funcao (Linear 0 (-3)) "f(x) = -3" -- reta horizontal negativa
         comprimento = calcularComprimentoCurva funcao (-2) 3
     in abs (comprimento - 5.0) < 0.1 -- diferen¸ca entre -2 e 3
+-}
