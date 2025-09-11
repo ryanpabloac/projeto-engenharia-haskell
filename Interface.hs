@@ -329,15 +329,15 @@ menuAlgebra = do
             
     where
         listaOp = [
-        "[1] Somar matrizes.",
-        "[2] Multiplicar matrizes.",
-        "[3] Transpor matrizes.",
-        "[4] Calcular o determinante.",
-        "[5] Resolver um sistema linear.",
-        "[6] Produto escalar de vetores.",
-        "[7] Calcular a norma de um vetor.",
-        "[8] Calcular o ângulo entre vetores.",
-        "[0] Voltar."
+           "[1] Somar matrizes.",
+           "[2] Multiplicar matrizes.",
+           "[3] Transpor matrizes.",
+           "[4] Calcular o determinante.",
+           "[5] Resolver um sistema linear.",
+           "[6] Produto escalar de vetores.",
+           "[7] Calcular a norma de um vetor.",
+           "[8] Calcular o ângulo entre vetores.",
+           "[0] Voltar."
         ]
         
         opMin = 0
