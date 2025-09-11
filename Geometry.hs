@@ -74,15 +74,6 @@ intersecaoRetas r0 r1
      x = (b1-b0)/(a0-a1)
      y = a0*x + b0
      
-     
-dentroDoPoligono :: Ponto2D -> [Ponto2D] -> Bool
-dentroDoPoligono (Ponto2D px py)  ps = odd $ length [True | pa <- pareamento ps,
-                                       temRetorno $ intersecaoRetas pa (p0, Ponto2D (px+1) py)]
-   where
-     p0 = (Ponto2D px py)
-     temRetorno f = case f of
-                    Just _ -> True
-                    Nothing -> False
 
 -- || FUNÇÕES AUXILIARES ||
 

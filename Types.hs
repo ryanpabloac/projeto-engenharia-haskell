@@ -119,7 +119,7 @@ data TipoFuncao = Linear Double Double-- ax + b
                 | Trigonometrica TipoTrig Double Double-- a * func(bx)
      deriving (Show, Eq)
 
-data TipoTrig = Seno | Cosseno | Tangente deriving (Show, Eq)
+data TipoTrig = Seno | Cosseno | Tangente deriving (Show, Eq, Read)
 
 data Funcao = Funcao TipoFuncao String deriving (Show, Eq)-- Tipo e descrição
 
