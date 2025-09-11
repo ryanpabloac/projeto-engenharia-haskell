@@ -338,8 +338,7 @@ menuAlgebra = do
            "[7] Calcular a norma de um vetor.",
            "[8] Calcular o ângulo entre vetores.",
            "[0] Voltar."
-        ]
-        
+           ]
         opMin = 0
         opMax = 8
 
