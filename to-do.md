@@ -23,4 +23,8 @@
 ## Algoritmos e Estruturas de Dados
 [x] quickSort -> Caio Fernandes
 [x] mergeSort -> Caio Fernandes
+[x] insertionSort -> Caio Fernandes
+[x] inserirOrdenado -> Caio Fernandes
+[x] construirArvore -> Caio Fernandes
+[x] buscarArvore -> Caio Fernandes
 
