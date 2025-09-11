@@ -3,6 +3,7 @@ module Interface (hubMenus) where
 import Calculus
 import Geometry
 import Types
+import Algebra 
 import DataStructures
 import Algorithms 
 
@@ -256,6 +257,91 @@ lerPonto2D = do
     putStr "Entre com a coordenada y: "
     y <- readLn
     return (Ponto2D x y)
+
+-- MENU ALGEBRA LINEAR 
+
+menuAlgebra :: IO () 
+menuAlgebra = do
+    exibirOpções listaOp
+    op <- lerOpção opMin opMax
+    f <- menuFunção
+    
+    case op of
+        0 -> menuPrincipal
+        1 -> do
+            putStr "Forneça a primeira matriz: "
+            m1 <- readLn
+            putStr "Agora, forneça a segunda: "
+            m2 <- readLn
+            let resultado = somarMatrizes m1 m2
+            putStrLn ("A soma é: " ++ show resultado)
+            menuAlgebra
+        2 -> do
+            putStr "Forneça a primeira matriz: "
+            m1 <- readLn
+            putStr "Forneça a segunda matriz: "
+            m2 <- readLn
+            let resultado = multiplicarMatrizes m1 m2
+            putStrLn ("O produto é: " ++ show resultado)
+            menuAlgebra
+        3-> do
+            putStr "Digite a matriz a ser transposta: "
+            m <- readLn
+            let resultado = transpostaMatriz m
+            putStrLn ("A transposta é: " ++ show resultado)
+            menuAlgebra
+        4-> do
+            putStr "O determinante será calculado. Forneça a matriz: "
+            m <- readLn
+            let resultado = determinante m
+            putStrLn ("O determinante é: " ++ show resultado)
+            menuAlgebra
+        5-> do
+            putStr "O sistema linear será resolvido. Digite a matriz: "
+            m1 <- readLn
+            putStr "Agora, digite o vetor: "
+            v2 <- readLn
+            let resultado = resolverSistemaLinear m1 v2
+            putStrLn ("O resultado é: " ++ show resultado)
+            menuAlgebra
+        6 -> do
+            putStr "Digite o primeiro vetor: "
+            v1 <- readLn
+            putStr "Digite o segundo vetor: "
+            v2 <- readLn
+            let resultado = produtoEscalar v1 v2
+            putStrLn ("O produto escalar dos vetores é: " ++ show resultado)
+            menuAlgebra
+        7 -> do
+            putStr "Informe o vetor para o cálculo da norma: "
+            v <- readLn
+            let resultado = normaVetor v
+            putStrLn ("A norma do vetor é: " ++ show resultado)
+            menuAlgebra
+        8 -> do
+            putStr "Informe o primeiro vetor: "
+            v1 <- readLn
+            putStr "Informe o segundo: "
+            v2 <- readLn
+            let resultado = anguloEntreVetores v1 v2
+            putStrLn ("O ângulo entre os vetores é: " ++ show resultado)
+            menuAlgebra
+            
+    where
+        listaOp = [
+        "[1] Somar matrizes.",
+        "[2] Multiplicar matrizes.",
+        "[3] Transpor matrizes.",
+        "[4] Calcular o determinante.",
+        "[5] Resolver um sistema linear.",
+        "[6] Produto escalar de vetores.",
+        "[7] Calcular a norma de um vetor.",
+        "[8] Calcular o ângulo entre vetores.",
+        "[0] Voltar."
+        ]
+        
+        opMin = 0
+        opMax = 8
 
 -- |Menu de Algoritmos
 menuAlgoritmos :: IO ()
