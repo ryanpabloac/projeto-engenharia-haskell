@@ -37,6 +37,7 @@ hubMenus menu =
       "geometria" -> menuGeometria
       "algoritmos" -> menuAlgoritmos
       "estruturas_de_dados" -> menuEstruturasDeDados
+      "Algebra" -> menuAlgebra
 
 
 -- |Menus Específicos
@@ -52,6 +53,7 @@ menuPrincipal = do
       4 -> do hubMenus "geometria"
       5 -> do hubMenus "algoritmos"
       6 -> do hubMenus "estruturas_de_dados"
+      7 -> do hubMenus "Algebra"
       
     where
       listaOp = [
@@ -59,12 +61,13 @@ menuPrincipal = do
         "[4] Geometria",
         "[5] Algoritmos",
         "[6] Estruturas de Dados",
+        "[7] Algebra",
         "[0] Sair"]
       opMin = 0
-      opMax = 6 --mudar
+      opMax = 6 --mudar <------------------------------------------------------------------------
       
 {-
-    "[6] Executar todos os testes", -- trocar a opção
+    "[6] Executar todos os testes", <------------------- trocar a opção
 -}
 
 menuCálculo :: IO ()
@@ -382,14 +385,16 @@ menuAlgoritmos = do
         putStrLn "Retornando ao menu principal."
         hubMenus "principal"
 
-    where
+     where
       listaOp = [
-          "[1] Busca Binária",
-          "[2] Bubble Sort",
+          "[1] Merge Sort",
+          "[2] Quick Sort",
+          "[3] Insertion Sort",
+          "[4] Inserir Ordenado",
           "[0] Retornar"
         ]
       opMin = 0
-      opMax = 2
+      opMax = 4
 
 -- |Menu de Estruturas de Dados
 menuEstruturasDeDados :: IO ()
