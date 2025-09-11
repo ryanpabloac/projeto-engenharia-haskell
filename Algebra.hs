@@ -42,7 +42,26 @@ multiplicarMatrizes (Matriz mat1) (Matriz mat2)
         in Just (Matriz mResultante) -- resultado da operacao
    | otherwise = Nothing -- as dimensoes das matrizes nao permitem essa operacao
 
--- FUNCAO DETERMINANTE DANDO ERRO 
+determinante :: Matriz -> Maybe Double
+determinante (Matriz []) = Nothing -- a matriz eh vazia
+determinante (Matriz mat1) 
+    | linha /= coluna = Nothing -- matrizes nÃ£o quadradas nao tem determinante
+    | linha == 0 = Nothing -- matriz invalida
+    | otherwise = Just(detM mat1) -- calcula o determinante se matriz for quadrada
+    where
+        (linha, coluna) = tamanho(Matriz mat1) -- usa a funcao aux para pegar as dimensoes da matriz
+        detM [[unicoEl]] = unicoEl -- det de 1x1 Ã© o proprio elem.
+        detM [[x, y], [z, w]] = x*w - y*z -- 2x2 tem det direto
+        detM (li:lis) = -- separa a primeira linha das outras
+            sum [ sign j * xj * detM (menor lis j) -- det da matriz obtida ao remover a coluna j
+                | (j, xj) <- zip[0..] li] -- associa os elementos da primeira linha com o indice
+                -- soma tudo para obter o det
+            where
+                sign j = 
+                    if even j then 1
+                    else -1
+                menor ls j = map(\r -> take j r ++ drop(j+1) r) ls 
+                -- faz a matriz removendo a coluna j de cada linha correspondente
 
 
 
