@@ -31,6 +31,18 @@ transposta (Matriz mat1) =
     Matriz (transpose mat1) -- usa a função importada de Data.List para transpor a matriz.
 
 
+multiplicarMatrizes :: Matriz -> Matriz -> Maybe Matriz
+multiplicarMatrizes (Matriz mat1) (Matriz mat2)
+    | (length (head mat1)) == length mat2 = -- se o num. de colunas de mat1 se igualar ao num. de linhas de mat2
+        let (Matriz mat2Transp) = transpostaMatriz (Matriz mat2)
+        -- transpoe a segunda matriz para facilitar o acesso às colunas.
+            mResultante = [[sum (zipWith(*) lMat1 cMat2) -- multiplica os elementos das linhas da primeira matriz com os elementos das colunas da segunda matriz. depois, o "sum" faz a soma dos produtos.
+                        | cMat2 <- mat2Transp] 
+                        | lMat1 <- mat1]
+        in Just (Matriz mResultante) -- resultado da operacao
+   | otherwise = Nothing -- as dimensoes das matrizes nao permitem essa operacao
+
+-- FUNCAO DETERMINANTE DANDO ERRO 
 
 
 
