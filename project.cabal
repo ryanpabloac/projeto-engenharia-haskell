@@ -1,0 +1,36 @@
+cabal-version: 2.4
+
+name: projeto-engenharia
+version: 1.0.0
+author: Grupo de Estudantes
+maintainer: grupo@email.com
+synopsis: Sistema de analise matematica para engenharia
+build-type: Simple
+
+executable projeto-engenharia
+    main-is: Main.hs
+    other-modules:
+        Types,
+        Geometry,
+        Algebra,
+        Calculus,
+        Algorithms,
+        DataStructures,
+        Interface,
+        Engineering.Civil,
+        Engineering.Mechanical,
+        Engineering.Electrical
+    build-depends:
+       base >=4.14 && <5,
+       time >=1.9,
+       containers >=0.6
+    default-language: Haskell2010
+    ghc-options: -Wall -Wextra -O2
+    
+test-suite tests
+    type: exitcode-stdio-1.0
+    main-is: Tests/AllTests.hs
+    build-depends:
+        base,
+        projeto-engenharia
+    default-language: Haskell2010

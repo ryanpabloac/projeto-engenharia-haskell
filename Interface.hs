@@ -6,12 +6,14 @@ import Types
 import Algebra
 import DataStructures
 import Algorithms 
+import Engineering.Civil
+import Engineering.Electrical
+import Engineering.Mechanical
 
 -- |Funções Gerais
 exibirOpções :: [String] -> IO ()
 exibirOpções opções = do
     putStrLn ""
-    putStrLn "==== MENU ===="
     putStrLn "Selecione uma opção válida: "
     putStrLn $ unlines opções
 
@@ -37,7 +39,11 @@ hubMenus menu =
       "geometria" -> menuGeometria
       "algoritmos" -> menuAlgoritmos
       "estruturas_de_dados" -> menuEstruturasDeDados
-      "Algebra" -> menuAlgebra
+      "algebra" -> menuAlgebra
+      "engenharias" -> menuEngenharias
+      "civil" -> menuCivil
+      "eletrica" -> menuEletrica
+      "mecanica" -> menuMecanica
 
 
 -- |Menus Específicos
@@ -49,19 +55,22 @@ menuPrincipal = do
     case op of
       0 -> do putStrLn "Programa encerrado!"
               return ()
+      1 -> do hubMenus "geometria"
+      2 -> do hubMenus "algebra"
       3 -> do hubMenus "calculo"
-      4 -> do hubMenus "geometria"
-      5 -> do hubMenus "algoritmos"
-      6 -> do hubMenus "estruturas_de_dados"
-      7 -> do hubMenus "Algebra"
+      4 -> do hubMenus "algoritmos"
+      5 -> do hubMenus "estruturas_de_dados"
+      6 -> do hubMenus "engenharias"
       
     where
       listaOp = [
+        "[1] Geometria Analítica",
+        "[2] Álgebra Linear",
         "[3] Cálculo Diferencial e Integral",
-        "[4] Geometria",
-        "[5] Algoritmos",
-        "[6] Estruturas de Dados",
-        "[7] Algebra",
+        
+        "[4] Algoritmos",
+        "[5] Estruturas de Dados",
+        "[6] Engenharias",
         "[0] Sair"]
       opMin = 0
 
@@ -69,6 +78,7 @@ menuPrincipal = do
 
 menuCálculo :: IO ()
 menuCálculo = do
+    putStrLn "=== MENU CÁLCULO ==="
     exibirOpções listaOp
     op <- lerOpção opMin opMax
     f <- menuFunção
@@ -94,7 +104,7 @@ menuCálculo = do
           a <- readLn
           putStr "Limite superior: "
           b <- readLn
-          putStr "Quantidade de somas: "
+          putStr "Tamanho dos intervalos: "
           n <- readLn
           let resultado = integralNumerica f a b n 
           putStrLn $ "Resultado: " ++ (show resultado)
@@ -153,6 +163,7 @@ menuCálculo = do
  
 menuFunção :: IO Funcao
 menuFunção = do
+    putStrLn "=== MENU FUNÇÕES ==="
     exibirOpções listaOp
     op <- lerOpção opMin opMax
     
@@ -208,6 +219,7 @@ menuFunção = do
       
 menuGeometria :: IO ()
 menuGeometria = do
+    putStrLn "=== MENU GEOMETRIA ==="
     exibirOpções listaOp
     op <- lerOpção opMin opMax
 
@@ -383,6 +395,7 @@ lerFigura = do
 
 menuAlgebra :: IO () 
 menuAlgebra = do
+    putStrLn "=== MENU ÁLGEBRA ==="
     exibirOpções listaOp
     op <- lerOpção opMin opMax
     f <- menuFunção
@@ -466,6 +479,7 @@ menuAlgebra = do
 -- |Menu de Algoritmos
 menuAlgoritmos :: IO ()
 menuAlgoritmos = do
+    putStrLn "=== MENU ALGORITMOS ==="
     exibirOpções listaOp
     op <- lerOpção opMin opMax
     
@@ -518,6 +532,7 @@ menuAlgoritmos = do
 -- |Menu de Estruturas de Dados
 menuEstruturasDeDados :: IO ()
 menuEstruturasDeDados = do
+    putStrLn "=== MENU ESTRUTURA DE DADOS ==="
     exibirOpções listaOp
     op <- lerOpção opMin opMax
 
@@ -554,3 +569,235 @@ menuEstruturasDeDados = do
         ]
       opMin = 0
       opMax = 3
+      
+menuEngenharias :: IO ()
+menuEngenharias = do
+   putStrLn "=== MENU ENGENHARIAS ==="
+   exibirOpções listaOp
+   op <- lerOpção opMin opMax
+   
+   case op of
+      0 -> do return ()
+      1 -> do hubMenus "civil"
+      2 -> do hubMenus "mecanica"
+      3 -> do hubMenus "eletrica"
+   where
+      listaOp = [
+        "[1] Engenharia Civil",
+        "[2] Engenharia Mecânica",
+        "[3] Engenharia Elétrica",
+        "[0] Voltar"]
+      opMin = 0
+      opMax = 3
+      
+menuCivil :: IO ()
+menuCivil = do
+   putStrLn "=== MENU ENGENHARIA CIVIL ==="
+   exibirOpções listaOp
+   op <- lerOpção opMin opMax
+   
+   case op of
+      0 -> do return ()
+      1 -> do
+         putStr "Entre com a largura da base: "
+         l <- readLn
+         putStr "Entre com a altura da seção: "
+         a <- readLn
+         let resultado = momentoInerciaRetangular l a
+         putStrLn $ "Resultado: " ++ (show resultado)
+         hubMenus "civil"
+         
+      2 -> do
+         putStr "Entre com a força aplicada: "
+         f <- readLn
+         putStr "Entre com a área da seção: "
+         a <- readLn
+         let resultado = tensaoNormal f a
+         putStrLn $ "Resultado: " ++ (show resultado)
+         hubMenus "civil"
+         
+      3 -> do
+         putStr "Entre com a carga: "
+         c <- readLn
+         putStr "Entre com o comprimento: "
+         comp <- readLn
+         putStr "Entre com o modulo de elasticidade: "
+         e <- readLn
+         putStr "Entre com o momento de inércia: "
+         i <- readLn
+         let resultado = deflexaoViga c comp e i
+         putStrLn $ "Resultado: " ++ (show resultado)
+         hubMenus "civil"
+         
+      4 -> do
+         putStr "Entre com o modulo de elasticidade: "
+         e <- readLn
+         putStr "Entre com o momento de inércia: "
+         i <- readLn
+         putStr "Entre com o comprimento: "
+         comp <- readLn
+         let resultado = cargaCriticaEuler e i comp
+         putStrLn $ "Resultado: " ++ (show resultado)
+         hubMenus "civil"
+         
+      5 -> do
+         fig <- lerFigura
+         let resultado = volumeConcreto fig
+         putStrLn $ "Resultado: " ++ (show resultado)
+         hubMenus "civil"
+         
+   where
+      listaOp = [
+        "[1] Momento de Inércia Retangular",
+        "[2] Tensão Normal",
+        "[3] Deflexão de Viga",
+        "[4] Carga Crítica de Euler",
+        "[5] Volume de Concreto",
+        "[0] Voltar"]
+      opMin = 0
+      opMax = 5
+      
+menuEletrica :: IO ()
+menuEletrica = do
+   putStrLn "=== MENU ENGENHARIA ELÉTRICA ==="
+   exibirOpções listaOp
+   op <- lerOpção opMin opMax
+   
+   case op of
+      0 -> do hubMenus "engenharias"
+      1 -> do
+         putStr "Entre com a corrente: "
+         c <- readLn
+         putStr "Entre com a resistência: "
+         r <- readLn
+         putStrLn $ "Resultado: " ++ (show (tensaoOhm c r))
+         menuEletrica
+      2 -> do
+         putStr "Entre com a tensão: "
+         t <- readLn
+         putStr "Entre com a corrente: "
+         c <- readLn
+         putStrLn $ "Resultado: " ++ (show (potenciaEletricaVI t c))
+         menuEletrica
+      3 -> do
+         putStr "Entre com a resistência: "
+         r <- readLn
+         putStr "Entre com a corrente: "
+         c <- readLn
+         putStrLn $ "Resultado: " ++ (show (potenciaEletricaRI r c))
+         menuEletrica
+      4 -> do
+         putStr "Entre com a tensão: "
+         t <- readLn
+         putStr "Entre com a resistência: "
+         r <- readLn
+         putStrLn $ "Resultado: " ++ (show (potenciaEletricaVR t r))
+         menuEletrica
+      5 -> do
+         putStr "Entre com a lista de resistências (ex: [1.2, 3.4, 5.6]): "
+         l <- readLn
+         putStrLn $ "Resultado: " ++ (show (resistenciaSerie l))
+         menuEletrica
+      6 -> do
+         putStr "Entre com a lista de resistências (ex: [1.2, 3.4, 5.6]): "
+         l <- readLn
+         putStrLn $ "Resultado: " ++ (show (resistenciaParalelo l))
+         menuEletrica
+      7 -> do
+         putStr "Entre com a resistência: "
+         r <- readLn
+         putStr "Entre com a reatância: "
+         re <- readLn
+         putStrLn $ "Resultado: " ++ (show (impedanciaAC r re))
+         menuEletrica
+      8 -> do
+         putStr "Entre com a coordenada radial: "
+         c <- readLn
+         putStr "Entre com o ângulo em radianos: "
+         a <- readLn
+         putStrLn $ "Resultado: " ++ (show (polarParaRetangular c a))
+         menuEletrica
+      9 -> do
+         putStr "Entre com a coordenada x: "
+         x <- readLn
+         putStr "Entre com a coordenada y: "
+         y <- readLn
+         putStrLn $ "Resultado: " ++ (show (retangularParaPolar x y))
+         menuEletrica
+   where
+      listaOp = [
+        "[1] Tensão (Lei de Ohm)",
+        "[2] Potência Elétrica (V*I)",
+        "[3] Potência Elétrica (R*I^2)",
+        "[4] Potência Elétrica (V^2/R)",
+        "[5] Resistência em Série",
+        "[6] Resistência em Paralelo",
+        "[7] Impedância AC",
+        "[8] Polar para Retangular",
+        "[9] Retangular para Polar",
+        "[0] Voltar"]
+      opMin = 0
+      opMax = 9
+      
+menuMecanica :: IO ()
+menuMecanica = do
+   putStrLn "=== MENU ENGENHARIA MECÂNICA ==="
+   exibirOpções listaOp
+   op <- lerOpção opMin opMax
+   
+   case op of
+      0 -> do hubMenus "engenharias"
+      1 -> do
+         putStr "Entre com a força: "
+         f <- readLn
+         putStr "Entre com a distância do eixo: "
+         d <- readLn
+         putStr "Entre com o ângulo em radianos: "
+         a <- readLn
+         putStrLn $ "Resultado: " ++ (show (calcularTorque f d a))
+         menuMecanica
+      2 -> do
+         putStr "Entre com a velocidade linear: "
+         v <- readLn
+         putStr "Entre com o raio: "
+         r <- readLn
+         putStrLn $ "Resultado: " ++ (show (velocidadeAngular v r))
+         menuMecanica
+      3 -> do
+         putStr "Entre com a velocidade tangencial: "
+         v <- readLn
+         putStr "Entre com o raio: "
+         r <- readLn
+         putStrLn $ "Resultado: " ++ (show (aceleracaocentripeta v r))
+         menuMecanica
+      4 -> do
+         putStr "Entre com a massa: "
+         m <- readLn
+         putStr "Entre com a velocidade: "
+         v <- readLn
+         putStrLn $ "Resultado: " ++ (show (energiaCinetica m v))
+         menuMecanica
+      5 -> do
+         putStr "Entre com a massa: "
+         m <- readLn
+         putStr "Entre com a altura: "
+         a <- readLn
+         putStrLn $ "Resultado: " ++ (show (energiaPotencial m a))
+         menuMecanica
+      6 -> do
+         putStr "Entre com a lista de pares (massa, distância): "
+         l <- readLn
+         putStrLn $ "Resultado: " ++ (show (centroMassaX l))
+         menuMecanica
+         
+   where
+      listaOp = [
+        "[1] Calcular Torque",
+        "[2] Velocidade Angular",
+        "[3] Aceleração Centrípeta",
+        "[4] Energia Cinética",
+        "[5] Energia Potencial",
+        "[6] Centro de Massa X",
+        "[0] Voltar"]
+      opMin = 0
+      opMax = 6
