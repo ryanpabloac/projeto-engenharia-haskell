@@ -5,13 +5,17 @@
 - Matheus Vieira de Assis - 12421BCC040
 - Carlos Eduardo Rabelo Rodrigues Pelet - 12421BCC044
 - Diogo Pontes Vieira Costa - 12421BCC053
+- Caio Fernandes Nascimento - 12421BCC016
+  
 ### Como compilar e executar o projeto
 
 Certifique-se de possuir o compilador GHC esteja instalado, para compilar abra o terminal (Ctrl + Alt + t) navegue até a pasta raiz do código e execute o seguinte comando no terminal:
 
-```bash
+```
+bash
 ghc Main.hs
-
-Em seguida execute o arquivo com:
-
+```
+### Em seguida execute o arquivo com:
+```
 ./Main
+```
