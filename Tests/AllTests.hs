@@ -1,16 +1,10 @@
-module Tests.AllTests where
+module Main (main) where
 
---import Tests.GeometryTests
---import Tests.LinearAlgebraTests
---import Tests.CalculusTests
---import Tests.AlgorithmsTests
---import Tests.ValidationTests
---import Tests.BinaryTreeTests
---import Tests.SortingTests
---import Tests.CivilEngineeringTests
---import Tests.MechanicalEngineeringTests
---import Tests.ElectricalEngineeringTests
+import AlgorithmsTests
+import CivilEngineeringTests
 
-todosTestes :: IO ()
-todosTestes = do
+main :: IO ()
+main = do
+   executarTestesEspecialista4
+   executarTestesCivilEngineering
    

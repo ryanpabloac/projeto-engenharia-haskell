@@ -239,36 +239,5 @@ testeMinimoConstante =
     in case minimo of
         Just x -> x >= -1 && x <= 1 -- qualquer ponto ´e m´ınimo
         Nothing -> False
-{-
--- Testes para calcularComprimentoCurva
-testeComprimentoRetaHorizontal :: Bool
-testeComprimentoRetaHorizontal =
-    let funcao = Funcao (Linear 0 5) "f(x) = 5" -- reta horizontal
-        comprimento = calcularComprimentoCurva funcao 0 10
-    in abs (comprimento - 10.0) < 0.1 -- comprimento = diferen¸ca em x
 
-testeComprimentoRetaInclinada :: Bool
-testeComprimentoRetaInclinada =
-    let funcao = Funcao (Linear 1 0) "f(x) = x" -- reta y=x
-        comprimento = calcularComprimentoCurva funcao 0 1
-        esperado = sqrt 2 -- hipotenusa do tri^angulo (1,1)
-    in abs (comprimento - esperado) < 0.1
-
-testeComprimentoRetaVertical :: Bool
-testeComprimentoRetaVertical =
-    let funcao = Funcao (Linear 0 0) "f(x) = 0" -- eixo x
-        comprimento = calcularComprimentoCurva funcao 0 5
-    in abs (comprimento - 5.0) < 0.1
-
-testeComprimentoParabola :: Bool
-testeComprimentoParabola =
-    let funcao = Funcao (Quadratica 1 0 0) "f(x) = x²"
-        comprimento = calcularComprimentoCurva funcao 0 1
-    in comprimento > 1.0 && comprimento < 2.0 -- deve ser maior que a corda
-
-testeComprimentoConstante :: Bool
-testeComprimentoConstante =
-    let funcao = Funcao (Linear 0 (-3)) "f(x) = -3" -- reta horizontal negativa
-        comprimento = calcularComprimentoCurva funcao (-2) 3
-    in abs (comprimento - 5.0) < 0.1 -- diferen¸ca entre -2 e 3
--}
+    in abs (comprimento - 5.0) < 0.1 -- diferença entre -2 e 3

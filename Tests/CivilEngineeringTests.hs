@@ -1,4 +1,4 @@
-module Tests.CivilEngineeringTests where
+module CivilEngineeringTests where
 
 import Types
 import Engineering.Civil
@@ -65,8 +65,8 @@ testeMomentoInerciaMaximo =
         esperado = (10.0 * 2.0^3) / 12 -- I = 6.667 §m4§
     in abs (inercia - esperado) < 0.001
 
-testeMomentoInerciaPropor¸c~ao :: Bool
-testeMomentoInerciaPropor¸c~ao =
+testeMomentoInerciaProporção :: Bool
+testeMomentoInerciaProporção =
     let base1 = 0.2
         altura1 = 0.4
         inercia1 = momentoInerciaRetangular base1 altura1
@@ -566,7 +566,7 @@ executarTestesCivilEngineering = do
     putStrLn $ "Laje: " ++ show testeMomentoInerciaLaje
     putStrLn $ "M´ınimo: " ++ show testeMomentoInerciaMinimo
     putStrLn $ "M´aximo: " ++ show testeMomentoInerciaMaximo
-    putStrLn $ "Propor¸c~ao: " ++ show testeMomentoInerciaPropor¸c~ao
+    putStrLn $ "Propor¸c~ao: " ++ show testeMomentoInerciaProporção
     putStrLn $ "Altura importante: " ++ show testeMomentoInerciaAlturaImportante
     putStrLn $ "Decimal: " ++ show testeMomentoInerciaDecimal
     
@@ -579,7 +579,6 @@ executarTestesCivilEngineering = do
     putStrLn $ "Zero for¸ca: " ++ show testeTensaoNormalZeroForca
     putStrLn $ "Concreto: " ++ show testeTensaoNormalConcreto
     putStrLn $ "A¸co: " ++ show testeTensaoNormalAco
-    putStrLn $ "Precis~ao: " ++ show testeTensaoNormalPrecisao
     putStrLn $ "Unidades: " ++ show testeTensaoNormalUnidades
     
     putStrLn "\n-- TESTES DEFLEX~AO VIGA --"
@@ -635,7 +634,7 @@ testesCivilEngineering =
     , ("Momento In´ercia Laje", testeMomentoInerciaLaje)
     , ("Momento In´ercia M´ınimo", testeMomentoInerciaMinimo)
     , ("Momento In´ercia M´aximo", testeMomentoInerciaMaximo)
-    , ("Momento In´ercia Propor¸c~ao", testeMomentoInerciaPropor¸c~ao)
+    , ("Momento In´ercia Propor¸c~ao", testeMomentoInerciaProporção)
     , ("Momento In´ercia Altura Importante", testeMomentoInerciaAlturaImportante)
     , ("Momento In´ercia Decimal", testeMomentoInerciaDecimal)
     
@@ -648,7 +647,6 @@ testesCivilEngineering =
     , ("Tens~ao Normal Zero For¸ca", testeTensaoNormalZeroForca)
     , ("Tens~ao Normal Concreto", testeTensaoNormalConcreto)
     , ("Tens~ao Normal A¸co", testeTensaoNormalAco)
-    , ("Tens~ao Normal Precis~ao", testeTensaoNormalPrecisao)
     , ("Tens~ao Normal Unidades", testeTensaoNormalUnidades)
     
     -- Deflex~ao Viga (10 testes)

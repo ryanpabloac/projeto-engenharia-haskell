@@ -1,4 +1,4 @@
-module Tests.ElectricalEngineeringTests where
+module ElectricalEngineeringTests where
 
 import Types
 import Engineering.Electrical

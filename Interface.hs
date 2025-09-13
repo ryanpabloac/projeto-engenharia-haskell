@@ -398,11 +398,11 @@ menuAlgebra = do
     putStrLn "=== MENU ÁLGEBRA ==="
     exibirOpções listaOp
     op <- lerOpção opMin opMax
-    f <- menuFunção
     
     case op of
         0 -> menuPrincipal
         1 -> do
+            f <- menuFunção
             putStr "Forneça a primeira matriz: "
             m1 <- readLn
             putStr "Agora, forneça a segunda: "
@@ -411,6 +411,7 @@ menuAlgebra = do
             putStrLn ("A soma é: " ++ show resultado)
             menuAlgebra
         2 -> do
+            f <- menuFunção
             putStr "Forneça a primeira matriz: "
             m1 <- readLn
             putStr "Forneça a segunda matriz: "
@@ -419,18 +420,21 @@ menuAlgebra = do
             putStrLn ("O produto é: " ++ show resultado)
             menuAlgebra
         3-> do
+            f <- menuFunção
             putStr "Digite a matriz a ser transposta: "
             m <- readLn
             let resultado = transpostaMatriz m
             putStrLn ("A transposta é: " ++ show resultado)
             menuAlgebra
         4-> do
+            f <- menuFunção
             putStr "O determinante será calculado. Forneça a matriz: "
             m <- readLn
             let resultado = determinante m
             putStrLn ("O determinante é: " ++ show resultado)
             menuAlgebra
         5-> do
+            f <- menuFunção
             putStr "O sistema linear será resolvido. Digite a matriz: "
             m1 <- readLn
             putStr "Agora, digite o vetor: "
@@ -439,6 +443,7 @@ menuAlgebra = do
             putStrLn ("O resultado é: " ++ show resultado)
             menuAlgebra
         6 -> do
+            f <- menuFunção
             putStr "Digite o primeiro vetor: "
             v1 <- readLn
             putStr "Digite o segundo vetor: "
@@ -447,12 +452,14 @@ menuAlgebra = do
             putStrLn ("O produto escalar dos vetores é: " ++ show resultado)
             menuAlgebra
         7 -> do
+            f <- menuFunção
             putStr "Informe o vetor para o cálculo da norma: "
             v <- readLn
             let resultado = normaVetor v
             putStrLn ("A norma do vetor é: " ++ show resultado)
             menuAlgebra
         8 -> do
+            f <- menuFunção
             putStr "Informe o primeiro vetor: "
             v1 <- readLn
             putStr "Informe o segundo: "
@@ -577,7 +584,7 @@ menuEngenharias = do
    op <- lerOpção opMin opMax
    
    case op of
-      0 -> do return ()
+      0 -> do hubMenus "principal"
       1 -> do hubMenus "civil"
       2 -> do hubMenus "mecanica"
       3 -> do hubMenus "eletrica"
